@@ -1,0 +1,7 @@
+{
+    "path_to_save": "../logs/current.log",
+    "max_bytes": 10485760,
+    "backup_count": 3,
+    "format": "%(asctime)s|%(levelname)s|%(funcName)s|%(message)s",
+    "level": "DEBUG"
+}
