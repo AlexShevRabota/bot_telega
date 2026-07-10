@@ -53,5 +53,5 @@ def load_config_log():
         config_dict = json.load(f)
     return ConfigObject(config_dict)
 
-config = load_config()
-config_log = load_config_log()
+conf_app = load_config()
+conf_log = load_config_log()
