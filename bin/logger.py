@@ -3,7 +3,7 @@ from logging.handlers import QueueHandler
 import logging.handlers
 import queue
 import sys
-from bin.var_conf import config_log
+from bin.config import conf_log
 from concurrent_log_handler import ConcurrentRotatingFileHandler
 
 dict_lvl = {
@@ -16,11 +16,11 @@ dict_lvl = {
 
 log_queue = queue.Queue()
 
-path_to_log = config_log.path_to_save
-max_bytes = config_log.max_bytes
-backup_count = config_log.backup_count
-format_ = config_log.format
-level = config_log.level
+path_to_log = conf_log.path_to_save
+max_bytes = conf_log.max_bytes
+backup_count = conf_log.backup_count
+format_ = conf_log.format
+level = conf_log.level
 
 log_dir = os.path.dirname(path_to_log)
 if log_dir and not os.path.exists(log_dir):

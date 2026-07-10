@@ -11,7 +11,6 @@ async def main():
     bot = Bot(token=API_KEY)
     storage = MemoryStorage()
     dp = Dispatcher(storage=storage)
-
     # Подключаем роутеры
     dp.include_router(chat.router)
 

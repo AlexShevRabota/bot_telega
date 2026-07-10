@@ -1,4 +1,6 @@
-from openai import AsyncOpenAI
+from openai import AsyncOpenAI, APIStatusError
+
+from bin.logger import logger
 from config import conf_app
 from typing import Optional
 
@@ -42,8 +44,18 @@ class LLMClient:
 
             return response.choices[0].message.content
 
+
+        except APIStatusError as e:
+
+            logger.error("Ollama API error: status=%s, body=%s", e.status_code, e.response.text)
+
+            return f"❌ Ошибка при запросе к модели: {e.status_code} — {e.response.text[:300]}"
+
         except Exception as e:
-            return f"❌ Ошибка при запросе к модели: {str(e)}"
+
+            logger.exception("Unexpected LLM error")
+
+            return f"❌ Непредвиденная ошибка: {str(e)}"
 
     async def chat_with_history(
             self,
